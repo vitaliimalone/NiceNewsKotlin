@@ -2,15 +2,15 @@ package com.vitaliimalone.nicenewskotlin.presentation.home.news
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vitaliimalone.nicenewskotlin.R
-import com.vitaliimalone.nicenewskotlin.domain.entities.News
 import com.vitaliimalone.nicenewskotlin.presentation.common.BaseFragment
 import com.vitaliimalone.nicenewskotlin.presentation.home.news.common.NewsAdapter
 import kotlinx.android.synthetic.main.news_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsFragment : BaseFragment(), NewsAdapter.NewsItemClickListener {
-
     companion object {
         private const val ARG_PAGE = "ARG_PAGE"
 
@@ -23,26 +23,17 @@ class NewsFragment : BaseFragment(), NewsAdapter.NewsItemClickListener {
         }
     }
 
-    private lateinit var viewModel: NewsViewModel
+    val viewModel: NewsViewModel by viewModel()
 
     override fun getLayoutRes(): Int = R.layout.news_fragment
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val newsList = prepareTestData()
         val newsAdapter = NewsAdapter(this)
-        newsAdapter.setData(newsList)
         newsRecyclerView.adapter = newsAdapter
         newsRecyclerView.layoutManager = LinearLayoutManager(context)
-
-    }
-
-    private fun prepareTestData(): List<News> {
-        val list = mutableListOf<News>()
-        for (i in 1..20) {
-            list.add(News("Title $i", "Description $i"))
-        }
-        return list
+        viewModel.news.observe(this, Observer(newsAdapter::setData))
+        viewModel.loadNews()
     }
 
     override fun onNewsClick() {

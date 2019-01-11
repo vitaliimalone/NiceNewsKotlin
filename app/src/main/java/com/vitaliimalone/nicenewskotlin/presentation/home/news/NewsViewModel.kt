@@ -1,7 +1,18 @@
 package com.vitaliimalone.nicenewskotlin.presentation.home.news
 
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.MutableLiveData
+import com.vitaliimalone.nicenewskotlin.domain.entities.News
+import com.vitaliimalone.nicenewskotlin.presentation.common.BaseViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class NewsViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class NewsViewModel : BaseViewModel() {
+    val news: MutableLiveData<List<News>> by lazy { MutableLiveData<List<News>>() }
+
+    fun loadNews() {
+        uiScope.launch {
+            delay(5000)
+            news.value = emptyList()
+        }
+    }
 }
