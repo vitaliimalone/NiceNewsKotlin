@@ -8,7 +8,8 @@ data class News(
     val title: String,
     val shortDescription: String,
     val description: String,
-    @PrimaryKey val url: String,
+    @PrimaryKey
+    val url: String,
     val urlToImage: String,
     val publishedAt: String,
     val author: String,
