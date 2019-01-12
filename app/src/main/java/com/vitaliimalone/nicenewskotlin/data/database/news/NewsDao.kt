@@ -8,8 +8,8 @@ import com.vitaliimalone.nicenewskotlin.domain.entities.News
 
 @Dao
 interface NewsDao {
-    @Query("SELECT * FROM news WHERE category IS :category")
-    fun getAllByCategory(category: News.Category)
+    @Query("SELECT * FROM news WHERE category = :category")
+    fun getAllByCategory(category: News.Category): List<News>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(news: List<News>)
@@ -17,6 +17,6 @@ interface NewsDao {
     @Query("DELETE FROM news")
     fun deleteAll()
 
-    @Query("DELETE FROM news WHERE category IS :category")
+    @Query("DELETE FROM news WHERE category = :category")
     fun deleteAllByCategory(category: News.Category)
 }
