@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
@@ -18,11 +20,32 @@ android {
         multiDexEnabled true
     }
     buildTypes {
+        buildTypes.all {
+            it.buildConfigField("String", "BASE_URL", "\"https://newsapi.org/v2/\"")
+            it.buildConfigField("String", "API_KEY", "\"636fabe95997449195a6e4d1c9b96b44\"")
+        }
+        debug {
+            minifyEnabled false
+            versionNameSuffix "-SNAPSHOT"
+            resValue("string", "app_name", "Nice News Debug")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue("string", "app_name", "Nice News")
         }
     }
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${variant.name}-${variant.versionName}-${buildTime()}.apk"
+        }
+    }
+}
+
+static def buildTime() {
+    def df = new SimpleDateFormat("yyyy-MM-dd")
+    df.setTimeZone(TimeZone.getTimeZone("UTC"))
+    return df.format(new Date())
 }
 
 dependencies {

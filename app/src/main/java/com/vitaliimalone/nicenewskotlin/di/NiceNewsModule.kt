@@ -3,6 +3,7 @@ package com.vitaliimalone.nicenewskotlin.di
 import androidx.room.Room
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.vitaliimalone.nicenewskotlin.BuildConfig
 import com.vitaliimalone.nicenewskotlin.data.database.NiceNewsDatabase
 import com.vitaliimalone.nicenewskotlin.data.repository.news.NewsRepository
 import com.vitaliimalone.nicenewskotlin.data.repository.news.NewsRepositoryImpl
@@ -25,7 +26,7 @@ val networkModule = module {
     }
     single {
         Retrofit.Builder()
-            .baseUrl("https://newsapi.org/v2/")
+            .baseUrl(BuildConfig.BASE_URL)
             .client(get())
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
