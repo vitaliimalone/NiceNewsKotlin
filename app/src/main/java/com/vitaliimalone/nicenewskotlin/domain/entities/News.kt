@@ -6,14 +6,14 @@ import androidx.room.PrimaryKey
 @Entity
 data class News(
         val title: String,
-        val shortDescription: String,
-        val description: String,
+        val shortDescription: String?,
+        val description: String?,
         @PrimaryKey
         val url: String,
-        val urlToImage: String,
+        val urlToImage: String?,
         val publishedAt: String,
-        val author: String,
-        val source: String,
+        val author: String?,
+        val source: String?,
         var category: Category? = null
 ) {
     enum class Category {
