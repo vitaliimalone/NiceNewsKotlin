@@ -8,7 +8,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class NewsViewModel(
-    private val newsInteractor: NewsInteractor
+        private val newsInteractor: NewsInteractor
 ) : BaseViewModel() {
     val news: MutableLiveData<List<News>> by lazy { MutableLiveData<List<News>>() }
 

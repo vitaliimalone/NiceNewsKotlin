@@ -3,7 +3,6 @@ package com.vitaliimalone.nicenewskotlin.data.converters
 import java.util.*
 
 abstract class Converter<Input, Output> {
-
     abstract fun convert(input: Input): Output
 
     abstract fun convertBack(output: Output): Input

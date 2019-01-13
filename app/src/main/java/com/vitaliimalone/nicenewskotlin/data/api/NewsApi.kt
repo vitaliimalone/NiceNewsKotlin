@@ -8,5 +8,7 @@ import retrofit2.http.Query
 
 interface NewsApi {
     @GET("top-headlines")
-    fun fetchTopHeadlines(@Query("category") category: String): Deferred<Response<TopHeadlinesResponse>>
+    fun fetchTopHeadlines(
+            @Query("category") category: String
+    ): Deferred<Response<TopHeadlinesResponse>>
 }

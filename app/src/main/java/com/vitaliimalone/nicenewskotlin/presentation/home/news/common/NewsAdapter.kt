@@ -8,8 +8,8 @@ import com.vitaliimalone.nicenewskotlin.R
 import com.vitaliimalone.nicenewskotlin.domain.entities.News
 import kotlinx.android.synthetic.main.news_item.view.*
 
-class NewsAdapter(private val listener: NewsItemClickListener) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
-
+class NewsAdapter(private val listener: NewsItemClickListener) :
+        RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     private var news: List<News> = emptyList()
 
     fun setData(news: List<News>) {
@@ -34,7 +34,6 @@ class NewsAdapter(private val listener: NewsItemClickListener) : RecyclerView.Ad
     override fun getItemCount() = news.size
 
     interface NewsItemClickListener {
-
         fun onNewsClick()
     }
 

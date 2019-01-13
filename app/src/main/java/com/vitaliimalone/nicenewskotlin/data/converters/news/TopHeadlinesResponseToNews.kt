@@ -9,14 +9,14 @@ class TopHeadlinesResponseToNews : Converter<TopHeadlinesResponse, List<News>>()
         val news: MutableList<News> = mutableListOf()
         for (article in input.articles) {
             news.add(News(
-                article.title,
-                article.description,
-                article.content,
-                article.url,
-                article.urlToImage,
-                article.publishedAt,
-                article.author,
-                article.source.name
+                    article.title,
+                    article.description,
+                    article.content,
+                    article.url,
+                    article.urlToImage,
+                    article.publishedAt,
+                    article.author,
+                    article.source.name
             ))
         }
         return news

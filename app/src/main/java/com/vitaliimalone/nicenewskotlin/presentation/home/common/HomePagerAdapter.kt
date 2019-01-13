@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.vitaliimalone.nicenewskotlin.presentation.home.news.NewsFragment
 
 class HomePagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-
     override fun getItem(position: Int) = NewsFragment.newInstance(position)
 
     override fun getCount() = 7
