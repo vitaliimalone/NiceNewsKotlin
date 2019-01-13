@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.vitaliimalone.nicenewskotlin.domain.entities.News
 import com.vitaliimalone.nicenewskotlin.domain.interactors.NewsInteractor
 import com.vitaliimalone.nicenewskotlin.presentation.common.BaseViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class NewsViewModel(
@@ -14,7 +13,6 @@ class NewsViewModel(
 
     fun loadNews() {
         uiScope.launch {
-            delay(5000)
             news.value = newsInteractor.getTopHeadlines(News.Category.BUSINESS)
         }
     }
