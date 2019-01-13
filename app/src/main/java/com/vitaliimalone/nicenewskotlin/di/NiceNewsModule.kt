@@ -17,25 +17,29 @@ import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-val appModule = module {
+val networkModule = module {
     single { GsonBuilder().create() }
     single {
         OkHttpClient.Builder()
-                .build()
+            .build()
     }
     single {
         Retrofit.Builder()
-                .baseUrl("https://newsapi.org/v2")
-                .client(get())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                .build()
+            .baseUrl("https://newsapi.org/v2/")
+            .client(get())
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(CoroutineCallAdapterFactory())
+            .build()
     }
+}
+val databaseModule = module {
     single {
         Room.databaseBuilder(androidContext(), NiceNewsDatabase::class.java, "nice-news-database")
-                .fallbackToDestructiveMigration()
-                .build()
+            .fallbackToDestructiveMigration()
+            .build()
     }
+}
+val newsModule = module {
     single { get<NiceNewsDatabase>().getNews() }
     single { NewsRepositoryRemote(get()) }
     single { NewsRepositoryLocal(get()) }
@@ -43,3 +47,4 @@ val appModule = module {
     single { NewsInteractor(get()) }
     viewModel { NewsViewModel(get()) }
 }
+val appModule = listOf(networkModule, databaseModule, newsModule)
