@@ -4,6 +4,8 @@ import androidx.room.Room
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.vitaliimalone.nicenewskotlin.BuildConfig
+import com.vitaliimalone.nicenewskotlin.data.api.interceptors.TokenAuthenticator
+import com.vitaliimalone.nicenewskotlin.data.api.interceptors.TokenInterceptor
 import com.vitaliimalone.nicenewskotlin.data.database.NiceNewsDatabase
 import com.vitaliimalone.nicenewskotlin.data.repository.news.NewsRepository
 import com.vitaliimalone.nicenewskotlin.data.repository.news.NewsRepositoryImpl
@@ -27,6 +29,8 @@ val networkModule = module {
             builder.addInterceptor(
                     HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         }
+        builder.addInterceptor(TokenInterceptor())
+        builder.authenticator(TokenAuthenticator())
         builder.build()
     }
     single {
