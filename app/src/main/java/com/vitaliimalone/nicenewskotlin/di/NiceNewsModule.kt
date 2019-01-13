@@ -12,6 +12,7 @@ import com.vitaliimalone.nicenewskotlin.data.repository.news.NewsRepositoryRemot
 import com.vitaliimalone.nicenewskotlin.domain.interactors.NewsInteractor
 import com.vitaliimalone.nicenewskotlin.presentation.home.news.NewsViewModel
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
@@ -21,23 +22,28 @@ import retrofit2.converter.gson.GsonConverterFactory
 val networkModule = module {
     single { GsonBuilder().create() }
     single {
-        OkHttpClient.Builder()
-            .build()
+        val builder = OkHttpClient.Builder()
+        if (BuildConfig.DEBUG) {
+            builder.addInterceptor(
+                    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        }
+        builder.build()
     }
     single {
         Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .client(get())
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .build()
+                .baseUrl(BuildConfig.BASE_URL)
+                .client(get())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
+                .build()
     }
 }
 val databaseModule = module {
     single {
-        Room.databaseBuilder(androidContext(), NiceNewsDatabase::class.java, BuildConfig.DATABASE_NAME)
-            .fallbackToDestructiveMigration()
-            .build()
+        Room.databaseBuilder(androidContext(), NiceNewsDatabase::class.java,
+                BuildConfig.DATABASE_NAME)
+                .fallbackToDestructiveMigration()
+                .build()
     }
 }
 val newsModule = module {
