@@ -6,7 +6,7 @@ class NewsRepositoryImpl(
     private val newsRepositoryRemote: NewsRepositoryRemote,
     private val newsRepositoryLocal: NewsRepositoryLocal
 ) : NewsRepository {
-    override fun getTopHeadlines(category: News.Category): List<News> {
+    override suspend fun getTopHeadlines(category: News.Category): List<News> {
         val newsList = newsRepositoryRemote.fetchTopHeadlines(category)
         newsRepositoryLocal.storeNews(newsList)
         return newsList

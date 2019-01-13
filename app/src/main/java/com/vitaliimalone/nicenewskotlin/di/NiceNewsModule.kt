@@ -2,6 +2,7 @@ package com.vitaliimalone.nicenewskotlin.di
 
 import androidx.room.Room
 import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.vitaliimalone.nicenewskotlin.data.database.NiceNewsDatabase
 import com.vitaliimalone.nicenewskotlin.data.repository.news.NewsRepository
 import com.vitaliimalone.nicenewskotlin.data.repository.news.NewsRepositoryImpl
@@ -18,19 +19,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val appModule = module {
     single { GsonBuilder().create() }
-    single { GsonConverterFactory.create() }
     single {
         OkHttpClient.Builder()
                 .build()
     }
     single {
         Retrofit.Builder()
-                .baseUrl("http://example.com")
+                .baseUrl("https://newsapi.org/v2")
                 .client(get())
-                .addConverterFactory(get<GsonConverterFactory>())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .build()
     }
-    single<NiceNewsDatabase> {
+    single {
         Room.databaseBuilder(androidContext(), NiceNewsDatabase::class.java, "nice-news-database")
                 .fallbackToDestructiveMigration()
                 .build()
