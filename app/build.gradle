@@ -23,6 +23,7 @@ android {
         buildTypes.all {
             it.buildConfigField("String", "BASE_URL", "\"https://newsapi.org/v2/\"")
             it.buildConfigField("String", "API_KEY", "\"636fabe95997449195a6e4d1c9b96b44\"")
+            it.buildConfigField("String", "DATABASE_NAME", "\"nice-news-database\"")
         }
         debug {
             minifyEnabled false

@@ -35,7 +35,7 @@ val networkModule = module {
 }
 val databaseModule = module {
     single {
-        Room.databaseBuilder(androidContext(), NiceNewsDatabase::class.java, "nice-news-database")
+        Room.databaseBuilder(androidContext(), NiceNewsDatabase::class.java, BuildConfig.DATABASE_NAME)
             .fallbackToDestructiveMigration()
             .build()
     }
