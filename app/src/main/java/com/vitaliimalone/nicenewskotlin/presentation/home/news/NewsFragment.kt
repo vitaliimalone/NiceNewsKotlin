@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.vitaliimalone.nicenewskotlin.R
 import com.vitaliimalone.nicenewskotlin.presentation.common.BaseFragment
 import com.vitaliimalone.nicenewskotlin.presentation.home.news.common.NewsAdapter
+import com.vitaliimalone.nicenewskotlin.utils.toast
 import kotlinx.android.synthetic.main.news_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,6 +35,7 @@ class NewsFragment : BaseFragment(), NewsAdapter.NewsItemClickListener {
         newsRecyclerView.layoutManager = LinearLayoutManager(context)
         viewModel.news.observe(this, Observer(newsAdapter::setData))
         viewModel.loadNews()
+        viewModel.toast.observe(this, Observer { toast(it) })
     }
 
     override fun onNewsClick() {

@@ -7,8 +7,12 @@ class NewsRepositoryImpl(
         private val newsRepositoryLocal: NewsRepositoryLocal
 ) : NewsRepository {
     override suspend fun getTopHeadlines(category: News.Category): List<News> {
-        val newsList = newsRepositoryRemote.fetchTopHeadlines(category)
-        newsRepositoryLocal.storeNews(newsList)
-        return newsList
+        return try {
+            val newsList = newsRepositoryRemote.fetchTopHeadlines(category)
+            newsRepositoryLocal.storeNews(newsList)
+            newsList
+        } catch (e: Exception) {
+            newsRepositoryLocal.getNews(category)
+        }
     }
 }
