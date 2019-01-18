@@ -42,20 +42,22 @@ val networkModule = module {
                 .build()
     }
 }
-val databaseModule = module {
+val dataModule = module {
     single {
         Room.databaseBuilder(androidContext(), NiceNewsDatabase::class.java,
                 BuildConfig.DATABASE_NAME)
                 .fallbackToDestructiveMigration()
                 .build()
     }
-}
-val newsModule = module {
     single { get<NiceNewsDatabase>().getNews() }
     single { NewsRepositoryRemote(get()) }
     single { NewsRepositoryLocal(get()) }
     single<NewsRepository> { NewsRepositoryImpl(get(), get()) }
+}
+val domainModule = module {
     single { NewsInteractor(get()) }
+}
+val presentationModule = module {
     viewModel { NewsViewModel(get()) }
 }
-val appModule = listOf(networkModule, databaseModule, newsModule)
+val appModule = listOf(networkModule, dataModule, domainModule, presentationModule)
