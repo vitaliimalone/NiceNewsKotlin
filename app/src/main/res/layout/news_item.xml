@@ -4,30 +4,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="8dp">
+    android:layout_margin="@dimen/default_margin"
+    app:cardCornerRadius="@dimen/default_card_corner_radius"
+    app:cardElevation="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:paddingBottom="@dimen/default_margin">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/newsImageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="8dp"
+            tools:src="@tools:sample/avatars" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/favoriteImageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_unfavorite_white" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/titleTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="32sp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Title" />
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:paddingStart="@dimen/default_margin"
+            android:paddingEnd="@dimen/default_margin"
+            android:textColor="@color/default_text_black"
+            android:textSize="@dimen/default_text_size_large"
+            app:layout_constraintTop_toBottomOf="@id/newsImageView"
+            tools:layout_editor_absoluteX="8dp"
+            tools:text="@tools:sample/lorem/random" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/descriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:paddingStart="@dimen/default_margin"
+            android:paddingEnd="@dimen/default_margin"
+            android:textColor="@color/default_text_gray"
+            android:textSize="@dimen/default_text_size"
+            app:layout_constraintTop_toBottomOf="@id/titleTextView"
+            tools:text="@tools:sample/lorem/random" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/sourceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22sp"
-            app:layout_constraintTop_toBottomOf="@id/titleTextView"
-            tools:text="Description" />
+            android:layout_marginTop="@dimen/default_margin_small"
+            android:paddingStart="@dimen/default_margin"
+            android:textColor="@color/default_text_gray"
+            android:textSize="@dimen/default_text_size_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
+            tools:text="NBC News" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dotTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_small"
+            android:layout_marginTop="@dimen/default_margin_small"
+            android:textColor="@color/default_text_gray"
+            android:textSize="@dimen/default_text_size_small"
+            app:layout_constraintStart_toEndOf="@id/sourceTextView"
+            app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
+            tools:text="•" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_small"
+            android:layout_marginTop="@dimen/default_margin_small"
+            android:textColor="@color/default_text_gray"
+            android:textSize="@dimen/default_text_size_small"
+            app:layout_constraintStart_toEndOf="@id/dotTextView"
+            app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
+            tools:text="18/18/1888" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
