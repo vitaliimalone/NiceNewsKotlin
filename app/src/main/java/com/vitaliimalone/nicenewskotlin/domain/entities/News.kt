@@ -14,7 +14,8 @@ data class News(
         val publishedAt: String,
         val author: String?,
         val source: String?,
-        var category: Category? = null
+        var category: Category? = null,
+        var isFavorite: Boolean = false
 ) {
     enum class Category {
         BUSINESS, ENTERTAINMENT, GENERAL, HEALTH, SCIENCE, SPORTS, TECHNOLOGY

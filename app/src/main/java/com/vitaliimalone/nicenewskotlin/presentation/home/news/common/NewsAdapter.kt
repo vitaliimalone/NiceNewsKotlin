@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.vitaliimalone.nicenewskotlin.R
+import com.vitaliimalone.nicenewskotlin.di.GlideApp
 import com.vitaliimalone.nicenewskotlin.domain.entities.News
 import kotlinx.android.synthetic.main.news_item.view.*
 
@@ -25,16 +26,33 @@ class NewsAdapter(private val listener: NewsItemClickListener) :
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val newsItem = news[position]
         holder.itemView.apply {
+            setOnClickListener { listener.onNewsClick(newsItem) }
+            favoriteImageView.setOnClickListener { listener.onFavoriteClick(newsItem) }
             titleTextView.text = newsItem.title
             descriptionTextView.text = newsItem.description
-            setOnClickListener { listener.onNewsClick() }
+            sourceTextView.text = newsItem.source
+            dateTextView.text = newsItem.publishedAt
+            favoriteImageView.setImageResource(
+                if (newsItem.isFavorite) R.drawable.ic_favorite_red
+                else R.drawable.ic_unfavorite_white)
+            GlideApp.with(newsImageView)
+                    .load(newsItem.urlToImage)
+                    .centerCrop()
+                    .error(R.color.default_gray_light)
+                    .into(newsImageView)
         }
     }
 
     override fun getItemCount() = news.size
 
+    fun updateNews(news: News) {
+        notifyItemChanged(this.news.indexOf(news))
+    }
+
     interface NewsItemClickListener {
-        fun onNewsClick()
+        fun onNewsClick(news: News)
+
+        fun onFavoriteClick(news: News)
     }
 
     class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

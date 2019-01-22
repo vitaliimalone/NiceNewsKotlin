@@ -1,9 +1,6 @@
 package com.vitaliimalone.nicenewskotlin.data.database.news
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.vitaliimalone.nicenewskotlin.domain.entities.News
 
 @Dao
@@ -19,4 +16,7 @@ interface NewsDao {
 
     @Query("DELETE FROM news WHERE category = :category")
     fun deleteAllByCategory(category: News.Category)
+
+    @Update
+    fun updateNews(news: News)
 }

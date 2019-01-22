@@ -15,4 +15,8 @@ class NewsRepositoryImpl(
             newsRepositoryLocal.getNews(category)
         }
     }
+
+    override suspend fun updateNews(news: News) {
+        newsRepositoryLocal.updateNews(news)
+    }
 }

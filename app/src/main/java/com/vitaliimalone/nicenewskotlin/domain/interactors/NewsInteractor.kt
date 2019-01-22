@@ -12,4 +12,13 @@ class NewsInteractor(private val newsRepository: NewsRepository) {
             Result.Error(e)
         }
     }
+
+    suspend fun updateNews(news: News): Result<Unit> {
+        return try {
+            newsRepository.updateNews(news)
+            Result.Success(Unit)
+        } catch (e: Exception) {
+            Result.Error(e)
+        }
+    }
 }

@@ -77,11 +77,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/default_margin_small"
             android:layout_marginTop="@dimen/default_margin_small"
+            android:text="@string/bullet"
             android:textColor="@color/default_text_gray"
             android:textSize="@dimen/default_text_size_small"
             app:layout_constraintStart_toEndOf="@id/sourceTextView"
-            app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
-            tools:text="•" />
+            app:layout_constraintTop_toBottomOf="@id/descriptionTextView" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/dateTextView"

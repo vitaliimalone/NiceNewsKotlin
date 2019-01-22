@@ -21,4 +21,10 @@ class NewsRepositoryLocal(private val newsDao: NewsDao) : BaseRepositoryLocal() 
             newsDao.getAllByCategory(category)
         }
     }
+
+    suspend fun updateNews(news: News) {
+        withContext(Dispatchers.IO) {
+            newsDao.updateNews(news)
+        }
+    }
 }
