@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vitaliimalone.nicenewskotlin.R
+import com.vitaliimalone.nicenewskotlin.domain.entities.News
 import com.vitaliimalone.nicenewskotlin.presentation.common.BaseFragment
 import com.vitaliimalone.nicenewskotlin.presentation.home.news.common.NewsAdapter
 import com.vitaliimalone.nicenewskotlin.utils.toast
@@ -20,7 +21,7 @@ class NewsFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         setupAdapter()
         setupObservers()
-        viewModel.loadNews()
+        viewModel.loadNews(arguments!!.getSerializable(ARG_CATEGORY) as News.Category)
     }
 
     private fun setupAdapter() {
@@ -35,11 +36,11 @@ class NewsFragment : BaseFragment() {
     }
 
     companion object {
-        private const val ARG_PAGE = "ARG_PAGE"
+        private const val ARG_CATEGORY = "ARG_CATEGORY"
 
-        fun newInstance(page: Int): NewsFragment {
+        fun newInstance(category: News.Category): NewsFragment {
             val args = Bundle()
-            args.putInt(ARG_PAGE, page)
+            args.putSerializable(ARG_CATEGORY, category)
             val fragment = NewsFragment()
             fragment.arguments = args
             return fragment

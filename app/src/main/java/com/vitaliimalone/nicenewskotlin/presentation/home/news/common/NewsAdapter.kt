@@ -29,7 +29,7 @@ class NewsAdapter(private val listener: NewsItemClickListener) :
             setOnClickListener { listener.onNewsClick(newsItem) }
             favoriteImageView.setOnClickListener { listener.onFavoriteClick(newsItem) }
             titleTextView.text = newsItem.title
-            descriptionTextView.text = newsItem.description
+            descriptionTextView.text = newsItem.getHandyDescription()
             sourceTextView.text = newsItem.source
             dateTextView.text = newsItem.publishedAt
             favoriteImageView.setImageResource(
@@ -38,7 +38,7 @@ class NewsAdapter(private val listener: NewsItemClickListener) :
             GlideApp.with(newsImageView)
                     .load(newsItem.urlToImage)
                     .centerCrop()
-                    .error(R.color.default_gray_light)
+                    .error(R.color.default_light_gray)
                     .into(newsImageView)
         }
     }

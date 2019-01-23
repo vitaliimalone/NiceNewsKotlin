@@ -2,11 +2,12 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#B4B4B4</color>
-    <color name="colorAccent">#E65100</color>
+    <color name="colorAccent">#ECD55F</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="default_text_black">#2E2E2E</color>
     <color name="default_text_gray">#535353</color>
     <color name="default_red">#FF3C3C</color>
-    <color name="default_gray_light">#CFCFCF</color>
+    <color name="default_light_gray">#CFCFCF</color>
+    <color name="purple">#5D2D64</color>
 </resources>

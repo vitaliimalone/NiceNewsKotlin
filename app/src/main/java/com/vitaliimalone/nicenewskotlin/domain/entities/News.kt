@@ -20,4 +20,12 @@ data class News(
     enum class Category {
         BUSINESS, ENTERTAINMENT, GENERAL, HEALTH, SCIENCE, SPORTS, TECHNOLOGY
     }
+
+    fun getHandyDescription(): String? {
+        return if (shortDescription.isNullOrBlank()) {
+            description
+        } else {
+            shortDescription
+        }
+    }
 }

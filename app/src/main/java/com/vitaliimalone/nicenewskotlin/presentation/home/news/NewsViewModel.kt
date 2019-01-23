@@ -15,9 +15,9 @@ class NewsViewModel(
     val toast: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     val favoriteUpdate: MutableLiveData<News> by lazy { MutableLiveData<News>() }
 
-    fun loadNews() {
+    fun loadNews(category: News.Category) {
         uiScope.launch {
-            val result = newsInteractor.getTopHeadlines(News.Category.BUSINESS)
+            val result = newsInteractor.getTopHeadlines(category)
             when (result) {
                 is Result.Success -> {
                     news.value = result.data
