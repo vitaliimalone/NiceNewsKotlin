@@ -16,8 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:background="@color/colorAccent"
-            app:tabMode="scrollable" />
+            android:background="@color/purple"
+            app:tabIndicatorColor="@color/white"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/default_light_gray" />
     </androidx.viewpager.widget.ViewPager>
 
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -26,8 +29,10 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
         android:background="@color/colorAccent"
+        app:backgroundTint="@color/purple"
         app:hideOnScroll="true"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
-        app:navigationIcon="@drawable/ic_arrow_back_black" />
+
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
