@@ -10,9 +10,9 @@ import retrofit2.Retrofit
 class NewsRepositoryRemote(private val retrofit: Retrofit) {
     var newsApi: NewsApi = retrofit.create(NewsApi::class.java)
 
-    suspend fun fetchTopHeadlines(category: News.Category): List<News> {
+    suspend fun fetchTopHeadlines(category: News.Category, country: String): List<News> {
         try {
-            val response = newsApi.fetchTopHeadlines(category.name).await()
+            val response = newsApi.fetchTopHeadlines(category.name, country).await()
             if (!response.isSuccessful) throw HttpException(response)
             val topHeadlinesResponse = response.body()
             val converter = TopHeadlinesResponseToNews()

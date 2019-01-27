@@ -12,6 +12,9 @@ import com.vitaliimalone.nicenewskotlin.data.repository.news.NewsRepositoryImpl
 import com.vitaliimalone.nicenewskotlin.data.repository.news.NewsRepositoryLocal
 import com.vitaliimalone.nicenewskotlin.data.repository.news.NewsRepositoryRemote
 import com.vitaliimalone.nicenewskotlin.domain.interactors.NewsInteractor
+import com.vitaliimalone.nicenewskotlin.presentation.MainActivity
+import com.vitaliimalone.nicenewskotlin.presentation.MainRouter
+import com.vitaliimalone.nicenewskotlin.presentation.home.HomeViewModel
 import com.vitaliimalone.nicenewskotlin.presentation.home.news.NewsViewModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -58,6 +61,9 @@ val domainModule = module {
     single { NewsInteractor(get()) }
 }
 val presentationModule = module {
+    // https://github.com/InsertKoinIO/koin/issues/49#issuecomment-414443350
+    single { (activity: MainActivity) -> MainRouter(activity) }
     viewModel { NewsViewModel(get()) }
+    viewModel { HomeViewModel(get()) }
 }
 val appModule = listOf(networkModule, dataModule, domainModule, presentationModule)

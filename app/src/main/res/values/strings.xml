@@ -2,4 +2,16 @@
     <string name="bullet">•</string>
     <string name="favorites">Favorites</string>
     <string name="settings">Settings</string>
+
+    <!-- Settings -->
+    <string name="settings_country_key">Country</string>
+    <string name="settings_us">United States</string>
+    <string name="settings_gb">Great Britain</string>
+    <string name="settings_ua">Ukraine</string>
+    <string name="settings_ru">Russia</string>
+    <string name="settings_pl">Poland</string>
+    <string name="settings_de">Germany</string>
+    <string name="settings_jp">Japan</string>
+    <string name="settings_cn">China</string>
+
 </resources>

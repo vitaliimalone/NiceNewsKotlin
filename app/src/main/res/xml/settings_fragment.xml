@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <ListPreference
+        android:defaultValue="us"
+        android:entries="@array/country_entries"
+        android:entryValues="@array/country_values"
+        android:key="@string/settings_country_key"
+        android:title="@string/settings_country_key"
+        app:iconSpaceReserved="false"
+        />
+</PreferenceScreen>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 2-letter ISO 3166-1 code -->
+    <string-array name="country_entries">
+        <item>@string/settings_us</item>
+        <item>@string/settings_gb</item>
+        <item>@string/settings_ua</item>
+        <item>@string/settings_ru</item>
+        <item>@string/settings_pl</item>
+        <item>@string/settings_de</item>
+        <item>@string/settings_jp</item>
+        <item>@string/settings_cn</item>
+    </string-array>
+    <string-array name="country_values">
+        <item>us</item>
+        <item>gb</item>
+        <item>ua</item>
+        <item>ru</item>
+        <item>pl</item>
+        <item>de</item>
+        <item>jp</item>
+        <item>cn</item>
+    </string-array>
+</resources>

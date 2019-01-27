@@ -4,7 +4,6 @@ import android.os.Bundle
 import com.vitaliimalone.nicenewskotlin.R
 import com.vitaliimalone.nicenewskotlin.presentation.common.BaseFragment
 import com.vitaliimalone.nicenewskotlin.presentation.home.common.HomePagerAdapter
-import com.vitaliimalone.nicenewskotlin.utils.toast
 import kotlinx.android.synthetic.main.home_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -15,17 +14,17 @@ class HomeFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewPager.adapter = HomePagerAdapter(requireFragmentManager())
+        viewPager.adapter = HomePagerAdapter(childFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
         bottomAppBar.replaceMenu(R.menu.home_menu)
         bottomAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menu_favorites -> {
-                    toast("Favorites")
+                    viewModel.onFavoritesMenuClick()
                     true
                 }
                 R.id.menu_settings -> {
-                    toast("Settings")
+                    viewModel.onSettingsMenuClick()
                     true
                 }
                 else -> false
