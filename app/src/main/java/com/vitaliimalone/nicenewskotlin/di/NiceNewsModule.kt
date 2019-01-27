@@ -1,5 +1,6 @@
 package com.vitaliimalone.nicenewskotlin.di
 
+import androidx.preference.PreferenceManager
 import androidx.room.Room
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -52,10 +53,11 @@ val dataModule = module {
                 .fallbackToDestructiveMigration()
                 .build()
     }
+    single { PreferenceManager.getDefaultSharedPreferences(androidContext()) }
     single { get<NiceNewsDatabase>().getNews() }
     single { NewsRepositoryRemote(get()) }
     single { NewsRepositoryLocal(get()) }
-    single<NewsRepository> { NewsRepositoryImpl(get(), get()) }
+    single<NewsRepository> { NewsRepositoryImpl(get(), get(), get()) }
 }
 val domainModule = module {
     single { NewsInteractor(get()) }
