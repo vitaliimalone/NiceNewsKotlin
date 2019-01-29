@@ -4,12 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import com.vitaliimalone.nicenewskotlin.domain.Result
 import com.vitaliimalone.nicenewskotlin.domain.entities.News
 import com.vitaliimalone.nicenewskotlin.domain.interactors.NewsInteractor
+import com.vitaliimalone.nicenewskotlin.presentation.MainRouter
 import com.vitaliimalone.nicenewskotlin.presentation.common.BaseViewModel
 import com.vitaliimalone.nicenewskotlin.presentation.home.news.common.NewsAdapter
 import kotlinx.coroutines.launch
 
 class NewsViewModel(
-        private val newsInteractor: NewsInteractor
+        private val newsInteractor: NewsInteractor,
+        private val mainRouter: MainRouter
 ) : BaseViewModel(), NewsAdapter.NewsItemClickListener {
     val news: MutableLiveData<List<News>> by lazy { MutableLiveData<List<News>>() }
     val toast: MutableLiveData<String> by lazy { MutableLiveData<String>() }
@@ -30,7 +32,7 @@ class NewsViewModel(
     }
 
     override fun onNewsClick(news: News) {
-
+        mainRouter.navigateToNews(news.url)
     }
 
     override fun onFavoriteClick(news: News) {

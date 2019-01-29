@@ -1,5 +1,9 @@
 package com.vitaliimalone.nicenewskotlin.presentation
 
+import android.net.Uri
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.content.ContextCompat
+import com.vitaliimalone.nicenewskotlin.R
 import com.vitaliimalone.nicenewskotlin.presentation.favorites.FavoritesFragment
 import com.vitaliimalone.nicenewskotlin.presentation.home.HomeFragment
 import com.vitaliimalone.nicenewskotlin.presentation.settings.SettingsContainerFragment
@@ -18,5 +22,12 @@ class MainRouter(private val mainActivity: MainActivity) {
 
     fun navigateToFavorites() {
         mainActivity.replaceWithBackStack(mainActivity.mainActivityContainer.id, FavoritesFragment.newInstance())
+    }
+
+    fun navigateToNews(url: String) {
+        val customTabsIntent = CustomTabsIntent.Builder()
+                .setToolbarColor(ContextCompat.getColor(mainActivity, R.color.purple))
+                .build()
+        customTabsIntent.launchUrl(mainActivity, Uri.parse(url))
     }
 }

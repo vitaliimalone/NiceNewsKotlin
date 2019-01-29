@@ -65,7 +65,7 @@ val domainModule = module {
 val presentationModule = module {
     // https://github.com/InsertKoinIO/koin/issues/49#issuecomment-414443350
     single { (activity: MainActivity) -> MainRouter(activity) }
-    viewModel { NewsViewModel(get()) }
+    viewModel { NewsViewModel(get(), get()) }
     viewModel { HomeViewModel(get()) }
 }
 val appModule = listOf(networkModule, dataModule, domainModule, presentationModule)
