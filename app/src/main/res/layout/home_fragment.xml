@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottomAppBarCoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_constraintBottom_toBottomOf="parent">
+    >
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
@@ -20,7 +21,8 @@
             app:tabIndicatorColor="@color/white"
             app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/white"
-            app:tabTextColor="@color/default_light_gray" />
+            app:tabTextColor="@color/default_light_gray"
+            />
     </androidx.viewpager.widget.ViewPager>
 
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -28,11 +30,9 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="bottom"
-        android:background="@color/colorAccent"
         app:backgroundTint="@color/purple"
         app:hideOnScroll="true"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
-
         />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

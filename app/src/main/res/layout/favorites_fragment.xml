@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomAppBarCoordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.favorites.FavoritesFragment"
+    app:layout_constraintBottom_toBottomOf="parent"
     >
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favoritesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/default_margin"
+        tools:listitem="@layout/news_item"
         />
 
-</FrameLayout>
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        app:title="@string/favorites"
+        app:navigationIcon="@drawable/ic_arrow_back_white"
+        app:backgroundTint="@color/purple"
+        app:hideOnScroll="true"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+
+        />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

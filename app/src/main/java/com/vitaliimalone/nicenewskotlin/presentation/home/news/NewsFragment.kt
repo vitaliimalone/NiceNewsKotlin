@@ -26,7 +26,7 @@ class NewsFragment : BaseFragment() {
 
     private fun setupAdapter() {
         newsRecyclerView.adapter = newsAdapter
-        newsRecyclerView.layoutManager = LinearLayoutManager(context)
+        newsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun setupObservers() {

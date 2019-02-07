@@ -1,9 +1,9 @@
 package com.vitaliimalone.nicenewskotlin.presentation.home
 
-import androidx.lifecycle.ViewModel
 import com.vitaliimalone.nicenewskotlin.presentation.MainRouter
+import com.vitaliimalone.nicenewskotlin.presentation.common.BaseViewModel
 
-class HomeViewModel(private val mainRouter: MainRouter) : ViewModel() {
+class HomeViewModel(private val mainRouter: MainRouter) : BaseViewModel() {
     fun onFavoritesMenuClick() {
         mainRouter.navigateToFavorites()
     }

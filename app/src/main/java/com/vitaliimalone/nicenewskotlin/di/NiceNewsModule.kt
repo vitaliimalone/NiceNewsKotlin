@@ -15,6 +15,7 @@ import com.vitaliimalone.nicenewskotlin.data.repository.news.NewsRepositoryRemot
 import com.vitaliimalone.nicenewskotlin.domain.interactors.NewsInteractor
 import com.vitaliimalone.nicenewskotlin.presentation.MainActivity
 import com.vitaliimalone.nicenewskotlin.presentation.MainRouter
+import com.vitaliimalone.nicenewskotlin.presentation.favorites.FavoritesViewModel
 import com.vitaliimalone.nicenewskotlin.presentation.home.HomeViewModel
 import com.vitaliimalone.nicenewskotlin.presentation.home.news.NewsViewModel
 import okhttp3.OkHttpClient
@@ -67,5 +68,6 @@ val presentationModule = module {
     single { (activity: MainActivity) -> MainRouter(activity) }
     viewModel { NewsViewModel(get(), get()) }
     viewModel { HomeViewModel(get()) }
+    viewModel { FavoritesViewModel(get(), get()) }
 }
 val appModule = listOf(networkModule, dataModule, domainModule, presentationModule)
