@@ -21,4 +21,8 @@ class NewsRepositoryImpl(
     override suspend fun updateNews(news: News) {
         newsRepositoryLocal.updateNews(news)
     }
+
+    override suspend fun getFavorites(): List<News> {
+        return newsRepositoryLocal.getFavorites()
+    }
 }

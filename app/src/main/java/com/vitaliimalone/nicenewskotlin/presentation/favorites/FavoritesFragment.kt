@@ -32,7 +32,7 @@ class FavoritesFragment : BaseFragment() {
     private fun setupObservers() {
         viewModel.favorites.observe(this, Observer(favoritesAdapter::setData))
         viewModel.toast.observe(this, Observer { toast(it) })
-        viewModel.favoriteUpdate.observe(this, Observer { favoritesAdapter.updateNews(it) })
+        viewModel.favoriteUpdate.observe(this, Observer { favoritesAdapter.removeNews(it) })
     }
 
     companion object {

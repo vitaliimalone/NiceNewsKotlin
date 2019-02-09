@@ -11,7 +11,7 @@ class NewsRepositoryLocal(private val newsDao: NewsDao) : BaseRepositoryLocal() 
     // FIXME: https://issuetracker.google.com/issues/120227284
     suspend fun storeNews(news: List<News>) {
         return withContext(Dispatchers.IO) {
-            newsDao.deleteAll()
+            newsDao.deleteAllNonFavorite()
             newsDao.insertAll(news)
         }
     }
@@ -25,6 +25,12 @@ class NewsRepositoryLocal(private val newsDao: NewsDao) : BaseRepositoryLocal() 
     suspend fun updateNews(news: News) {
         withContext(Dispatchers.IO) {
             newsDao.updateNews(news)
+        }
+    }
+
+    suspend fun getFavorites(): List<News> {
+        return withContext(Dispatchers.IO) {
+            newsDao.getFavorites()
         }
     }
 }

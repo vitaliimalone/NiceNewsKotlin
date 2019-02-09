@@ -18,7 +18,17 @@ class FavoritesViewModel(
     val toast: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
     fun loadFavorites() {
-
+        uiScope.launch {
+            val result = newsInteractor.getFavorites()
+            when (result) {
+                is Result.Success -> {
+                    favorites.value = result.data
+                }
+                is Result.Error -> {
+                    toast.value = result.exception.message
+                }
+            }
+        }
     }
 
     override fun onNewsClick(news: News) {
@@ -27,7 +37,7 @@ class FavoritesViewModel(
 
     override fun onFavoriteClick(news: News) {
         uiScope.launch {
-            news.isFavorite = !news.isFavorite
+            news.isFavorite = false
             val result = newsInteractor.updateNews(news)
             when (result) {
                 is Result.Success -> {

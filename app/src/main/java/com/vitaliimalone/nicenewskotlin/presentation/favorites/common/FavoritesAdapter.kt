@@ -45,8 +45,8 @@ class FavoritesAdapter(private val listener: FavoritesClickListener) :
 
     override fun getItemCount() = news.size
 
-    fun updateNews(news: News) {
-        notifyItemChanged(this.news.indexOf(news))
+    fun removeNews(news: News) {
+        notifyItemRemoved(this.news.indexOf(news))
     }
 
     interface FavoritesClickListener {

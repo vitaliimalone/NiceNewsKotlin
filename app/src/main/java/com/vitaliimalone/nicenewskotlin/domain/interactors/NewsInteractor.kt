@@ -21,4 +21,12 @@ class NewsInteractor(private val newsRepository: NewsRepository) {
             Result.Error(e)
         }
     }
+
+    suspend fun getFavorites(): Result<List<News>> {
+        return try {
+            Result.Success(newsRepository.getFavorites())
+        } catch (e: Exception) {
+            Result.Error(e)
+        }
+    }
 }
