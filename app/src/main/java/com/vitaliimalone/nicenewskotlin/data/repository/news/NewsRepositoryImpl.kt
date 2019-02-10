@@ -10,11 +10,22 @@ class NewsRepositoryImpl(
 ) : NewsRepository {
     override suspend fun getTopHeadlines(category: News.Category): List<News> {
         return try {
-            val newsList = newsRepositoryRemote.fetchTopHeadlines(category, sharedPreferences.getString("Country", "us")!!)
+            val country = sharedPreferences.getString("Country", "us")!!
+            val newsList = newsRepositoryRemote.fetchTopHeadlines(category, country)
+            markFavorites(newsList)
             newsRepositoryLocal.storeNews(newsList)
             newsList
         } catch (e: Exception) {
             newsRepositoryLocal.getNews(category)
+        }
+    }
+
+    private suspend fun markFavorites(remotes: List<News>) {
+        val favorites = newsRepositoryLocal.getFavorites()
+        favorites.forEach {
+            if (remotes.contains(it)) {
+                remotes[remotes.indexOf(it)].isFavorite = true
+            }
         }
     }
 

@@ -17,11 +17,15 @@ class NewsFragment : BaseFragment() {
 
     override fun getLayoutRes(): Int = R.layout.news_fragment
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.loadNews(arguments!!.getSerializable(ARG_CATEGORY) as News.Category)
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupAdapter()
         setupObservers()
-        viewModel.loadNews(arguments!!.getSerializable(ARG_CATEGORY) as News.Category)
     }
 
     private fun setupAdapter() {

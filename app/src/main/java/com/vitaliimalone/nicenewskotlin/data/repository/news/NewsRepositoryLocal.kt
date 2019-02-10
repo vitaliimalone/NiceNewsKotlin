@@ -11,7 +11,6 @@ class NewsRepositoryLocal(private val newsDao: NewsDao) : BaseRepositoryLocal() 
     // FIXME: https://issuetracker.google.com/issues/120227284
     suspend fun storeNews(news: List<News>) {
         return withContext(Dispatchers.IO) {
-            newsDao.deleteAllNonFavorite()
             newsDao.insertAll(news)
         }
     }

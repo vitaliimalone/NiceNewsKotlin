@@ -13,18 +13,18 @@ fun AppCompatActivity.replaceWithBackStack(containerId: Int, fragment: Fragment)
     supportFragmentManager.beginTransaction()
             .replace(containerId, fragment, fragment.javaClass.simpleName)
             .addToBackStack(fragment.javaClass.simpleName)
-            .commit()
+            .commitAllowingStateLoss()
 }
 
 fun AppCompatActivity.addWithoutBackStack(containerId: Int, fragment: Fragment) {
     supportFragmentManager.beginTransaction()
             .add(containerId, fragment, fragment.javaClass.simpleName)
-            .commit()
+            .commitAllowingStateLoss()
 }
 
 fun AppCompatActivity.addWithBackStack(containerId: Int, fragment: Fragment) {
     supportFragmentManager.beginTransaction()
             .add(containerId, fragment, fragment.javaClass.simpleName)
             .addToBackStack(fragment.javaClass.simpleName)
-            .commit()
+            .commitAllowingStateLoss()
 }
