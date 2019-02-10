@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.vitaliimalone.nicenewskotlin.R
 import com.vitaliimalone.nicenewskotlin.di.GlideApp
 import com.vitaliimalone.nicenewskotlin.domain.entities.News
+import com.vitaliimalone.nicenewskotlin.utils.DateUtils
 import kotlinx.android.synthetic.main.news_item.view.*
 
 class FavoritesAdapter(private val listener: FavoritesClickListener) :
@@ -31,7 +32,7 @@ class FavoritesAdapter(private val listener: FavoritesClickListener) :
             titleTextView.text = newsItem.title
             descriptionTextView.text = newsItem.getHandyDescription()
             sourceTextView.text = newsItem.source
-            dateTextView.text = newsItem.publishedAt
+            dateTextView.text = DateUtils.formatDate(newsItem.publishedAt)
             favoriteImageView.setImageResource(
                     if (newsItem.isFavorite) R.drawable.ic_favorite_red
                     else R.drawable.ic_unfavorite_white)
