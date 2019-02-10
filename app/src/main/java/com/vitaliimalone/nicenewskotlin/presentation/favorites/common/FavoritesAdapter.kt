@@ -11,10 +11,10 @@ import kotlinx.android.synthetic.main.news_item.view.*
 
 class FavoritesAdapter(private val listener: FavoritesClickListener) :
         RecyclerView.Adapter<FavoritesAdapter.FavoritesViewHolder>() {
-    private var news: List<News> = emptyList()
+    private var news = mutableListOf<News>()
 
     fun setData(news: List<News>) {
-        this.news = news
+        this.news = news.toMutableList()
         notifyDataSetChanged()
     }
 
@@ -46,7 +46,9 @@ class FavoritesAdapter(private val listener: FavoritesClickListener) :
     override fun getItemCount() = news.size
 
     fun removeNews(news: News) {
-        notifyItemRemoved(this.news.indexOf(news))
+        val index = this.news.indexOf(news)
+        this.news.removeAt(index)
+        notifyItemRemoved(index)
     }
 
     interface FavoritesClickListener {
