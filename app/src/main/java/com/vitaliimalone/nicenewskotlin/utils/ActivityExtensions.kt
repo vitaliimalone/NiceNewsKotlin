@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 fun AppCompatActivity.replaceWithoutBackStack(containerId: Int, fragment: Fragment) {
     supportFragmentManager.beginTransaction()
             .replace(containerId, fragment, fragment.javaClass.simpleName)
-            .commit()
+            .commitAllowingStateLoss()
 }
 
 fun AppCompatActivity.replaceWithBackStack(containerId: Int, fragment: Fragment) {
